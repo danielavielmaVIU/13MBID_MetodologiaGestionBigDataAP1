@@ -4,13 +4,13 @@ from pandera import DataFrameSchema, Column, Check
 import pytest
 import datetime
 
-
+@pytest.fixture
 def datos_banco():
     datos = pd.read_csv('data/raw/bank-additional-full.csv', sep=';')
     return datos
 
 
-def test_esquema():
+def test_esquema(datos_banco):
     df = datos_banco
 
     esquema = DataFrameSchema({
@@ -41,22 +41,22 @@ def test_esquema():
     esquema.validate(df, lazy=True)
 
 
-    def test_basico(datos_banco):
-        """Test inicial para verificar que el dataframe de datos_banco no esta vacío y contiene las columnas esperadas
+def test_basico(datos_banco):
+    """Test inicial para verificar que el dataframe de datos_banco no esta vacío y contiene las columnas esperadas
         
-        Agrs:
+         Agrs:
             datos_banco (pd.DataFrame): DataFrame que contiene los datos del banco.
-        """
-        df = datos_banco
+    """
+    df = datos_banco
 
-        # Verficicar que el DataFRame no esta vacío
-        assert not df.empty, "El DataFram está vacío."
+    # Verficicar que el DataFRame no esta vacío
+    assert not df.empty, "El DataFram está vacío."
 
-        # Verficicar nulos
-        assert df.isnull().sum().sum() == 0, "El DataFram contiene valores nulos."
+    # Verficicar nulos
+    assert df.isnull().sum().sum() == 0, "El DataFram contiene valores nulos."
 
-        # Verificar cantidad de columnas
-        assert df.shape[1] == 21, f"El DataFrame deberia tener 21 coumnas, pero tiene {df.shape}"
+    # Verificar cantidad de columnas
+    assert df.shape[1] == 21, f"El DataFrame deberia tener 21 coumnas, pero tiene {df.shape}"
 
     if __name__ == "__name__":
 
