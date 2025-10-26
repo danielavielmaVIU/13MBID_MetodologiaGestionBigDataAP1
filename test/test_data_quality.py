@@ -5,13 +5,13 @@ import pytest
 import datetime
 
 
-def datos():
+def datos_banco():
     datos = pd.read_csv('data/raw/bank-additional-full.csv', sep=';')
     return datos
 
 
 def test_esquema():
-    df = datos()
+    df = datos_banco
 
     esquema = DataFrameSchema({
         "age": Column(pa.Int, nullable= False),
@@ -53,7 +53,7 @@ def test_esquema():
         assert not df.empty, "El DataFram está vacío."
 
         # Verficicar nulos
-        assert df.isnull().sim().sum() == 0, "El DataFram contiene valores nulos."
+        assert df.isnull().sum().sum() == 0, "El DataFram contiene valores nulos."
 
         # Verificar cantidad de columnas
         assert df.shape[1] == 21, f"El DataFrame deberia tener 21 coumnas, pero tiene {df.shape}"
