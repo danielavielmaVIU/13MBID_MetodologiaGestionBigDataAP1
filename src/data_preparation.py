@@ -1,13 +1,15 @@
 import pandas as pd
 import numpy as np
 from datetime import datetime
-
-
+from pathlib import Path
 
 INPUT_CSV = 'data/raw/bank-additional-full.csv'
 OUTPUT_DIR = 'data/processed/'
 
 def preprocess_data(input_path=INPUT_CSV, output_dir=OUTPUT_DIR):
+
+    Path(output_dir).mkdir(parents=True, exist_ok=True)
+
     df = pd.read_csv(input_path, sep=';')
     
     # Adaptar nombres de columnas
@@ -34,7 +36,6 @@ def preprocess_data(input_path=INPUT_CSV, output_dir=OUTPUT_DIR):
 
 if __name__ == "__main__":
     dimensiones = preprocess_data()
-    preprocess_data()
     with open('docs/transformations.txt', 'w') as f:
         f.write("Transformaciones realizadas:\n")
         f.write("Se reemlazaron los vvaloes 'unknown' por NaN\n")
