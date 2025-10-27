@@ -1,0 +1,6 @@
+Transformaciones realizadas:
+Se reemlazaron los vvaloes 'unknown' por NaN
+Se eliminaron filas con valores nulos
+Se eliminaron filas duplicadas
+Se eliminó la variables default debido a la alta candtida de valores nulos Cantidad de filas finales: 38232
+ Cantidad de columnas finales: 20
