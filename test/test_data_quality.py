@@ -1,6 +1,6 @@
 import pandas as pd
-import pandera as pa
-from pandera import DataFrameSchema, Column, Check
+import pandera.pandas as pa
+from pandera.pandas import DataFrameSchema, Column, Check
 import pytest
 import datetime
 
@@ -56,7 +56,7 @@ def test_basico(datos_banco):
     assert df.isnull().sum().sum() == 0, "El DataFram contiene valores nulos."
 
     # Verificar cantidad de columnas
-    assert df.shape[1] == 21, f"El DataFrame deberia tener 21 coumnas, pero tiene {df.shape}"
+    assert df.shape[1] == 21, f"El DataFrame deberia tener 21 columnas, pero tiene {df.shape}"
 
     if __name__ == "__name__":
 
@@ -66,9 +66,9 @@ def test_basico(datos_banco):
         try:
             test_esquema(datos_banco())
             test_basico(datos_banco())
-            print("Todos los tets pasaron exitosamente")
+            print("Todos los test pasaron exitosamente")
             with open(nombre_archivo, "w") as f:
-                f.write("Todos los tets pasaron exitosamente \n")
+                f.write("Todos los test pasaron exitosamente \n")
         except AssertionError as e:
             print(f"Test fallido: {e}")
             with open(nombre_archivo, "w") as f:

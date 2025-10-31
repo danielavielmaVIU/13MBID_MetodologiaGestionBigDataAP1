@@ -31,12 +31,14 @@ def test_great_expectation():
         "age_range",
         df["age"].between(18,100).all(),
         "La columna 'age' no está en el rango esperado (18-100)"
-    )                        
+    )
+                            
     add_expectation(
         "target_values",
         df["y"].isin(["yes", "no"]).all(),
         "La columna 'y' contiene vallores no válidos"
-    )  
+    ) 
+
     add_expectation(
         "pdays_positivos",
         (df["pdays"] >= 0).all(),
