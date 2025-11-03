@@ -26,12 +26,12 @@ stages:
       size: 5834924
     - path: test/test_data_quality.py
       hash: md5
-      md5: 7179e0c3e32e200fc4ad502e30d03df8
-      size: 2887
+      md5: 9c2bd3a61c25df693b8493ca792e71c8
+      size: 2902
     outs:
     - path: docs/test_results/test_results.html
       hash: md5
-      md5: fde190e08d986231d72839a90d959365
+      md5: d0532d56cd8eecf7a24ad040bc574bae
       size: 33677
   preprocess_data:
     cmd: python src/data_preparation.py
@@ -42,11 +42,43 @@ stages:
       size: 5834924
     - path: src/data_preparation.py
       hash: md5
-      md5: 30d816b73765f5da91a4341a96342ffd
-      size: 1654
+      md5: ef04268c7c35c99cbb8d7fc5abbe50dc
+      size: 1656
     outs:
     - path: data/processed
       hash: md5
-      md5: d3cbf7f08fc8b0cd0ce098ae5fd158ba.dir
+      md5: 794cb14fc64cbefa3ad7a16df1521b0c.dir
       size: 4444956
       nfiles: 1
+  generate_eda:
+    cmd: python src/eda_generation.py
+    deps:
+    - path: data/raw/bank-additional-full.csv
+      hash: md5
+      md5: f6cb2c1256ffe2836b36df321f46e92c
+      size: 5834924
+    - path: src/eda_generation.py
+      hash: md5
+      md5: d3f405beb83c875781952bc5218879b5
+      size: 798
+    outs:
+    - path: docs/output/eda/eda_report.html
+      hash: md5
+      md5: 9dc030834da5e6107df210652f5e237d
+      size: 7128418
+  generate_outliers_summary:
+    cmd: python src/data_summary_outliers.py
+    deps:
+    - path: data/raw/bank-additional-full.csv
+      hash: md5
+      md5: f6cb2c1256ffe2836b36df321f46e92c
+      size: 5834924
+    - path: src/data_summary_outliers.py
+      hash: md5
+      md5: 8766c6917f42ceac6d7fbdb1e8ea403c
+      size: 1894
+    outs:
+    - path: docs/resumen_outliers.txt
+      hash: md5
+      md5: afa986368bb630d8d69b6ad9d33a1bff
+      size: 284

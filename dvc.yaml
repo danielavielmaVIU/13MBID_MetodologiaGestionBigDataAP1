@@ -7,6 +7,23 @@ stages:
     outs:
       - docs/figures/
 
+
+  generate_outliers_summary:
+    cmd: python src/data_summary_outliers.py
+    deps:
+      - src/data_summary_outliers.py
+      - data/raw/bank-additional-full.csv
+    outs:
+      - docs/resumen_outliers.txt
+
+  generate_eda:
+    cmd: python src/eda_generation.py
+    deps:
+      - src/eda_generation.py
+      - data/raw/bank-additional-full.csv
+    outs:
+      - docs/output/eda/eda_report.html
+
   test_data_quality:
     cmd: pytest --html=docs/test_results/test_results.html --self-contained-html test/test_data_quality.py
     deps:
