@@ -26,6 +26,10 @@ def preprocess_data(input_path=INPUT_CSV, output_dir=OUTPUT_DIR):
 
     # Se hace filtro para elimnar las filas duplicadas
     df.drop_duplicates(inplace=True)
+ 
+    # Mapea la columna objetivo 'y' a valores binarios
+    map = {'yes':1, 'no':0}
+    df['y'] = df['y'].map(map)
 
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     output_path = f"{output_dir}/bank-processed-full_{timestamp}.csv"

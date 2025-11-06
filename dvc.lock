@@ -42,13 +42,13 @@ stages:
       size: 5834924
     - path: src/data_preparation.py
       hash: md5
-      md5: ef04268c7c35c99cbb8d7fc5abbe50dc
-      size: 1656
+      md5: 73f3a2bb423c81c465db0176d5299e21
+      size: 1776
     outs:
     - path: data/processed
       hash: md5
-      md5: 794cb14fc64cbefa3ad7a16df1521b0c.dir
-      size: 4444956
+      md5: e69d4a7f76f14c5bf363db191dfeebe8.dir
+      size: 4402467
       nfiles: 1
   generate_eda:
     cmd: python src/eda_generation.py
