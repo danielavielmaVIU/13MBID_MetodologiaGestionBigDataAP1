@@ -42,13 +42,13 @@ stages:
       size: 5834924
     - path: src/data_preparation.py
       hash: md5
-      md5: 73f3a2bb423c81c465db0176d5299e21
-      size: 1776
+      md5: b2e08076d07d1ccd1201eb5e1a61e6d6
+      size: 1918
     outs:
     - path: data/processed
       hash: md5
-      md5: e69d4a7f76f14c5bf363db191dfeebe8.dir
-      size: 4402467
+      md5: f09bf909d8765d1fa0326862d7c51d23.dir
+      size: 4368118
       nfiles: 1
   generate_eda:
     cmd: python src/eda_generation.py
@@ -82,3 +82,27 @@ stages:
       hash: md5
       md5: afa986368bb630d8d69b6ad9d33a1bff
       size: 284
+  train_model:
+    cmd: python src/train_model.py
+    deps:
+    - path: data/processed/bank-processed.csv
+      hash: md5
+      md5: 8be1a447fe2602de78a4994a9f15e880
+      size: 4368118
+    - path: src/train_model.py
+      hash: md5
+      md5: e8275e2c42d78e32f1a8725f7cfa0e6c
+      size: 9939
+    outs:
+    - path: metrics/model_metrics.json
+      hash: md5
+      md5: 7070ced462ef5221ba83e0693f2d4d6d
+      size: 160
+    - path: models/decision_tree_model.pkl
+      hash: md5
+      md5: c5279d6426fdf2f56e3e020ecf6dceb9
+      size: 218441
+    - path: models/preprocessor.pkl
+      hash: md5
+      md5: a8fbbbdced8a277feb183fdba5ce5fcc
+      size: 7770
