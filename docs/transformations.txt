@@ -3,5 +3,6 @@ Se reemplazaron los valores 'unknown' por NaN
 Se eliminaron filas con valores nulos
 Se eliminaron filas duplicadas
 Se elimino la variable default debido a la alta cantidad de valores nulos
- Cantidad de filas finales: 38232
- Cantidad de columnas finales: 20
+Se agrega el campo contacted_before y elimina pdays
+Cantidad de filas finales: 38232
+Cantidad de columnas finales: 20

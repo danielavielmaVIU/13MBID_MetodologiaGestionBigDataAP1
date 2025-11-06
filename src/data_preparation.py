@@ -18,8 +18,11 @@ def preprocess_data(input_path=INPUT_CSV, output_dir=OUTPUT_DIR):
     # Transformar los valores  "Unknown" a NaN
     df.replace ("unknown", np.nan , inplace=True)
 
-    # Se elimina variable Default ya que tiene muchos valores desconocidos
-    df.drop(columns=["default"], inplace=True)
+    # Se agrega el campo contacted_before
+    df['contacted_before'] = np.where(df['pdays'] == 999, 'no', 'yes')
+
+    # Se elimina la columna 'default' ya que tiene muchos valores desconocidos. Se elimina tambien pdays, dado la creación de variable contacted_before
+    df.drop(columns=["default", "pdays"], inplace=True)
 
     # Se hace un filtro para eliminar las filas que tiene valores nulos
     df.dropna(inplace=True)
@@ -46,5 +49,6 @@ if __name__ == "__main__":
         f.write("Se eliminaron filas con valores nulos\n")
         f.write("Se eliminaron filas duplicadas\n")
         f.write("Se elimino la variable default debido a la alta cantidad de valores nulos\n")
-        f.write(f" Cantidad de filas finales: {dimensiones[0]}\n")
-        f.write(f" Cantidad de columnas finales: {dimensiones[1]}\n")
+        f.write("Se agrega el campo contacted_before y elimina pdays\n")
+        f.write(f"Cantidad de filas finales: {dimensiones[0]}\n")
+        f.write(f"Cantidad de columnas finales: {dimensiones[1]}\n")
