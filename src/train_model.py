@@ -2,7 +2,6 @@
 Script para entrenar un modelo de clasificación utilizando la técnica con mejor rendimiento 
 que fuera seleccionada durante la experimentación.
 """
-
 # Importaciones generales
 import pandas as pd
 import mlflow
@@ -10,17 +9,14 @@ import mlflow.sklearn
 from pathlib import Path
 import joblib
 import json
-
 # Importaciones para el preprocesamiento y modelado
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import RobustScaler 
 from sklearn.utils import resample
-
 # Importaciones para la evaluación - experimentación
 from sklearn.model_selection import train_test_split
-
 # from sklearn.model_selection import cross_val_score
 from sklearn.metrics import (
     f1_score, recall_score, precision_score, 
@@ -32,12 +28,14 @@ import matplotlib.pyplot as plt
 from sklearn.metrics import ConfusionMatrixDisplay
 import argparse
 
+
 def load_data(path):
     """Función para cargar los datos desde un archivo CSV."""
     df = pd.read_csv(path)
     X = df.drop('y', axis=1)
     y = df['y']
     return train_test_split(X, y, test_size=0.2, random_state=42,stratify=y)
+
 
 def create_preprocessor(X_train):
     numerical_columns = X_train.select_dtypes(exclude='object').columns
@@ -93,6 +91,7 @@ def balance_data(X, y, random_state=42):
     y_train_resampled = balanced_data['target']
 
     return x_train_resampled, y_train_resampled
+
 
 def train_model(
     data_path: str = 'data/processed/data.csv',
@@ -236,7 +235,6 @@ def train_model(
             json.dump(metrics, f, indent=2)
 
         return model, preprocessor, metrics
-    
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Entrenar modelo de producción")
@@ -261,7 +259,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--metrics-output",
         type=str,
-        default="metrics/model_metrics.json",
+        default="metrics/metrics.json",
         help="Ruta donde guardar las métricas"
     )
     

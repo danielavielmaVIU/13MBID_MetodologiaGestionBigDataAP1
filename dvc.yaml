@@ -48,4 +48,4 @@ stages:
     outs:
       - models/decision_tree_model.pkl
       - models/preprocessor.pkl
-      - metrics/model_metrics.json
+      - metrics/metrics.json
