@@ -20,5 +20,7 @@ dependencies = [
     "streamlit>=1.43.0",
     "streamlit-ace>=0.1.1",
     "uvicorn>=0.38.0",
+    "gunicorn==21.2.0".
+    "python-multipart==0.0.9",
     "ydata-profiling>=4.13.0",
 ]
