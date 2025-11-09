@@ -13,7 +13,7 @@ st.set_page_config(
 st.title("🏦 Predicción de Conformación a Depósito a Plazo Fijo")
 st.markdown("""
 Esta aplicación utiliza un modelo de Machine Learning para predecir si un cliente bancario 
-conformará un depósito a plazo fijo basándose en sus características personales y de contacto.
+conformará un depósito a plazo fijo basándose en sus características personales y de contacto
 """)
 
 # URL de la API

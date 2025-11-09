@@ -83,7 +83,7 @@ except Exception as e:
 @app.get("/")
 def root():
     return {
-        "message": "API del modelo de predicción para clientes bancarios.",
+        "message": "API del modelo de predicción para clientes bancarios",
         "version": "1.0.1",
         "endpoints": {
             "predict": "/predict",
